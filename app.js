@@ -3,6 +3,7 @@ const app = Vue.createApp({
   // template: '<h2>i am the template</h2>'
   data() {
     return {
+      url: "https://www.facebook.com",
       showBooks: false,
       title: "The final Empire",
       author: "Brandon anderson",
@@ -11,24 +12,22 @@ const app = Vue.createApp({
       y: 0,
       books: [
         {
-          title: "The Hitchhiker's Guide to the Galaxy",
-          author: "Douglas Adams",
+          title: "name of the wind",
+          author: "patrick rothfuss",
+          img: "assets/1.jpg",
+          isFav: true,
         },
         {
-          title: "The Lord of the Rings",
-          author: "J.R.R. Tolkien",
+          title: "the way of kings",
+          author: "brandon sanderson",
+          img: "assets/2.jpg",
+          isFav: true,
         },
         {
-          title: "To Kill a Mockingbird",
-          author: "Harper Lee",
-        },
-        {
-          title: "The Great Gatsby",
-          author: "F. Scott Fitzgerald",
-        },
-        {
-          title: "Pride and Prejudice",
-          author: "Jane Austen",
+          title: "the final empire ",
+          author: "brandon sanderson",
+          img: "assets/3.jpg",
+          isFav: true,
         },
       ],
     };
@@ -47,7 +46,15 @@ const app = Vue.createApp({
       this.x = e.offsetX;
       this.y = e.offsetY;
     },
+    toggleIsFav(book) {
+      book.isFav = !book.isFav
+    }
   },
+  computed: {
+    filteredBooks() {
+      return this.books.filter((book)=> book.isFav)
+    }
+  }
 });
 
 app.mount("#app");

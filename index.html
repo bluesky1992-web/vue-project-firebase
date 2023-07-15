@@ -5,35 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Vue</title>
     <script src="https://unpkg.com/vue@3.0.2"></script>
-   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Hello Vue</h1>
     <div id="app">
+      <!--V-binding or attribute binding in vue-->
+      
+      <a v-bind:href="url">Click me please </a>
       <div v-if="showBooks">
-       <ul>
-        <li v-for="book in books">
+        <ul>
+          <!--Looping -->
+          <li v-for="book in filteredBooks" v-bind:class="{fav : book.isFav}" @click="toggleIsFav(book)">
+            <!--Another example of attribute binding -->
+            <img v-bind:src="book.img" v-bind:alt="book.title"  />
             <h3>{{book.title}}</h3>
             <p>{{book.author}}</p>
-        </li>
-       </ul>
+          </li>
+        </ul>
       </div>
       <button @click="toggleShowBooks">
         <span v-if="showBooks">Hide Books</span>
         <span v-else>Show Books</span>
       </button>
-
+      <!--Events-->
       <button v-on:click="age++">Increase Age</button>
       <button v-on:click="age--">Increase Age</button>
       <div @click="changeTitle('Hello Amy')">Click here</div>
+      <!--conditional rendering -->
+      <div v-show="showBooks">Hi Books are here</div>
 
-      <div v-show="showBooks">Hi Books are here </div>
-
-      <br>
-      <div class="box" @mouseover="handleEvent($event,5)">mouse over (enter)</div>
-      <div class="box" @mouseleave="handleEvent">mouse leave </div>
+      <br />
+      <div class="box" @mouseover="handleEvent($event,5)">
+        mouse over (enter)
+      </div>
+      <div class="box" @mouseleave="handleEvent">mouse leave</div>
       <div class="box" @dblclick="handleEvent">double click</div>
-      <div class="box" @mousemove="handleMousemove"> position - {{x}} {{y}}</div>
+      <div class="box" @mousemove="handleMousemove">position - {{x}} {{y}}</div>
     </div>
     <script src="./app.js"></script>
   </body>
